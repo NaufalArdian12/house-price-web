@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS        # <--- import
 import joblib
 import numpy as np
 
 app = Flask(__name__)
+CORS(app)                          # <--- tambahkan ini
 
 # Load model saat server dijalankan
 model = joblib.load('model.pkl')
@@ -12,7 +14,6 @@ def predict():
     data = request.json
 
     try:
-        # Ambil input dari user
         bedrooms = float(data.get('bedrooms'))
         bathrooms = float(data.get('bathrooms'))
         sqft_living = float(data.get('sqft_living'))
