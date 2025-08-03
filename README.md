@@ -21,4 +21,29 @@ AI-powered web app to predict house prices in Boston using machine learning — 
 ```bash
 cd backend
 python app.py
+```
+### 💻 Frontend (React)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+### 📬 API Endpoint
+| Method | Route    | Description         |
+| ------ | -------- | ------------------- |
+| POST   | /predict | Predict house price |
 
+### 📁 Folder Structure
+```bash
+.
+├── backend/
+│   ├── app.py          # Flask API
+│   └── model.pkl       # Trained ML model
+└── frontend/
+    ├── src/
+    └── ...
+```
+### ✨ Features
+1.  Predict house price instantly based on input features
+2.  Clean startup-style user interface
+3.  Lightweight & fast integration
