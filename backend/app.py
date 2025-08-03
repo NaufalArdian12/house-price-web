@@ -11,19 +11,31 @@ model = joblib.load('model.pkl')
 def predict():
     data = request.json
 
-    # contoh fitur input dari user (ubah sesuai fitur yang kamu pake)
-    luas_tanah = data.get('luas_tanah')
-    jumlah_kamar = data.get('jumlah_kamar')
-    lokasi = data.get('lokasi')  # kalau lokasi kategorikal, nanti kita encode dulu
+    try:
+        # Ambil input dari user
+        bedrooms = float(data.get('bedrooms'))
+        bathrooms = float(data.get('bathrooms'))
+        sqft_living = float(data.get('sqft_living'))
+        sqft_lot = float(data.get('sqft_lot'))
+        floors = float(data.get('floors'))
+        waterfront = int(data.get('waterfront'))
+        view = int(data.get('view'))
+        condition = int(data.get('condition'))
+        sqft_above = float(data.get('sqft_above'))
+        sqft_basement = float(data.get('sqft_basement'))
+        yr_built = int(data.get('yr_built'))
 
-    # susun dalam bentuk array 2D [ [x1, x2, ...] ]
-    fitur = np.array([[luas_tanah, jumlah_kamar, lokasi]])
+        fitur = np.array([[bedrooms, bathrooms, sqft_living, sqft_lot, floors,
+                           waterfront, view, condition, sqft_above,
+                           sqft_basement, yr_built]])
 
-    hasil = model.predict(fitur)[0]
+        prediction = model.predict(fitur)[0]
 
-    return jsonify({
-        'prediction': float(hasil)
-    })
+        return jsonify({"prediction": float(prediction)})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
 
 if __name__ == '__main__':
     app.run(debug=True)
