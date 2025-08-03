@@ -2,7 +2,7 @@
 
 AI-powered web app to predict house prices in Boston using machine learning — built with a modern **React + Flask** stack.
 
-![Preview]("Screenshot 2025-08-03 133048.png")
+![Preview](preview.jpg)
 
 ---
 
